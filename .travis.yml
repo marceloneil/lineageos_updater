@@ -1,0 +1,23 @@
+sudo: required
+services:
+    - docker
+language: bash
+script:
+    - mv app.cfg.example app.cfg
+    # Build for amd64
+    - docker build amd64.dockerfile -t marceloneil/lineageos_updater
+    # Test amd64
+    - docker run marceloneil/lineageos_updater addrom --help
+    # Prepare qemu
+    # - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+    # Build for armhf
+    # - docker build armhf.dockerfile -t marceloneil/lineageos_updater_armhf
+    # Test armhf
+    # - docker run marceloneil/lineageos_updater_armhf addrom --help
+    # Push images
+    - >
+        if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+            docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+            docker push marceloneil/lineageos_updater
+            # docker push marceloneil/lineageos_updater_armhf
+        fi

@@ -5,7 +5,7 @@ language: bash
 script:
     - mv app.cfg.example app.cfg
     # Build for amd64
-    - docker build amd64.dockerfile -t marceloneil/lineageos_updater
+    - docker build . -f amd64.dockerfile -t marceloneil/lineageos_updater
     # Test amd64
     - docker run marceloneil/lineageos_updater addrom --help
     # Prepare qemu

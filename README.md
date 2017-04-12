@@ -1,4 +1,4 @@
-LineageOS Updater Backend
+LineageOS Updater Backend [![Build Status](https://travis-ci.org/marceloneil/lineageos_updater.svg?branch=master)](https://travis-ci.org/marceloneil/lineageos_updater)
 =======================
 Copyright (c) 2017 The LineageOS Project<br>
 
